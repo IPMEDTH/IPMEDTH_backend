@@ -25,7 +25,7 @@ jobs:
       
       # Runs ssh deploy action to load the repo onto the server
       - name: ssh-scp-deploy
-        uses: marcodallasanta/ssh-scp-deploy@v1.0.4
+        uses: matthijsvdmeulen/ssh-scp-deploy@v1.0.5
         with:
           # Local file path
           local: ./
