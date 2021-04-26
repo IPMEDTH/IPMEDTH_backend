@@ -22,19 +22,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      
+      # Runs ssh deploy action to load the repo onto the server
       - name: ssh-scp-deploy
-        # You may pin to the exact commit or the version.
-        # uses: marcodallasanta/ssh-scp-deploy@874eec1e4c680e58de1fecdf6b384d37f012202d
         uses: marcodallasanta/ssh-scp-deploy@v1.0.4
         with:
           # Local file path
@@ -50,9 +40,9 @@ jobs:
           # Remote server private key
           key: '${{ secrets.IPMEDTH_SSH_KEY }}'
           # Command to run via ssh before scp upload
-          # pre_upload: # optional
+          pre_upload: cd ~/domains/api.ipmedth.meulen.dev && rm -rf * && rm -rf .*
           # Command to run via ssh after scp upload
-          # post_upload: # optional
+          post_upload: cd ~/domains/api.ipmedth.meulen.dev && cp public public_html -r && cp .env.example .env && php artisan key:generate
           # A set of ssh_option separated by -o
           # ssh_options: # optional, default is -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
           # Flags to use during scp
