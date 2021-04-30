@@ -13,13 +13,15 @@ $ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
+Dan moet je ```cp .env.example .env``` gebruiken om een lokaal ```.env``` bestand te krijgen.
+
 Daarna kun je ```./vendor/bin/sail up -d``` gebruiken om een webserver op localhost te draaien en ```./vendor/bin/sail down``` om deze weer af te sluiten
 
 Evt kun je voor sail een alias instellen in bash: ```alias sail='bash vendor/bin/sail'```
 
 daarna moet je elk volgend command beginnen met ```sail ...``` bijvoorbeeld: ```sail php artisan key:generate```
 
-Deploy instructions:
+Deploy instructions (1e twee zijn al gedaan als je sail gebruikt):
 
 ```bash
 $ composer install
