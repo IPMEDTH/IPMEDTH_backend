@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Location;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,5 +24,12 @@ class DatabaseSeeder extends Seeder
                 'email_verified_at' => null,
             ]
         );
+
+        Location::insert([
+            'name' => '3D Printer',
+            'description' => 'Dit is een mooie 3D Printer',
+            'amount' => 2,
+            'image_url' => 'https://picsum.photos/200/300'
+        ]);
     }
 }
