@@ -2,7 +2,7 @@
 
 name: Deploy to server on merge
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -22,7 +22,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       # Runs ssh deploy action to load the repo onto the server
       - name: ssh-scp-deploy
         uses: matthijsvdmeulen/ssh-scp-deploy@v1.0.6
@@ -42,7 +42,7 @@ jobs:
           # Command to run via ssh before scp upload
           pre_upload: cd ~/domains/api.ipmedth.meulen.dev && rm -rf * && rm -rf .*
           # Command to run via ssh after scp upload
-          post_upload: cd ~/domains/api.ipmedth.meulen.dev && cp public public_html -r && cp .env.example .env && composer install && php artisan key:generate
+          post_upload: cd ~/domains/api.ipmedth.meulen.dev && cp public public_html -r && cp .env.testing .env && composer install && php artisan key:generate && php artisan migrate:fresh --seed
           # A set of ssh_option separated by -o
           # ssh_options: # optional, default is -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
           # Flags to use during scp
