@@ -36,11 +36,9 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show(Location $location)
+    public function show($locationId)
     {
-        return response()->json(
-            Location::findOrFail($location)
-        );
+      return Location::where('id','=',$locationId)->get();
     }
 
     /**
