@@ -9,12 +9,14 @@ class Material extends Model
 {
     use HasFactory;
 
+    public $timestamps = true;
+
     /**
      * The name of the database table.
      *
      * @var string
      */
-    protected $table = 'materials';
+    protected $table = 'material';
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +24,7 @@ class Material extends Model
      * @var array
      */
     protected $fillable = [
-        'date'
+        'created_at'
     ];
 
     /**
@@ -30,7 +32,7 @@ class Material extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'date_added' => 'date'
-    ];
+    // protected $casts = [
+    //     'date_added' => 'date'
+    // ];
 }

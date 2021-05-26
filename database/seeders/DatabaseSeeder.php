@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
             'amount' => 2,
             'image_url' => 'https://picsum.photos/200/300'
         ]);
+
+        $this->call(MaterialSeeder::class);
     }
 }
