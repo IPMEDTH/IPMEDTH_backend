@@ -31,6 +31,13 @@ class DatabaseSeeder extends Seeder
             'amount' => 2,
             'image_url' => 'https://picsum.photos/200/300'
         ]);
+      
+        Location::insert([
+            'name' => 'Lasersnijder',
+            'description' => 'Dit is een mooie lasersnijder',
+            'amount' => 1,
+            'image_url' => 'https://api.ipmedth.meulen.dev/1.jpeg'
+        ]);
 
         $this->call(MaterialSeeder::class);
     }
