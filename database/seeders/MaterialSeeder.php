@@ -25,5 +25,16 @@ class MaterialSeeder extends Seeder
         'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
         'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
       ]);
+
+      DB::table('material')->insert([
+        'name' => 'Test Material 2',
+        'description' => 'This material is also meant for Testing',
+        'amount' => 10,
+        'unit' => 'Meter',
+        'added_by' => 'Jaden Mains',
+        'img_url' => 'https://picsum.photos/id/1058/4608/3072',
+        'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+        'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+      ]);
     }
 }
