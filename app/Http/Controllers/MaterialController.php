@@ -43,7 +43,10 @@ class MaterialController extends Controller
 
   public function getData($term){
 
-    return Material::where('name','like','%'.$term.'%')->get();
+    return Material::where('name','like','%'.$term.'%')
+    ->orWhere('description','like','%'.$term.'%')
+    ->orWhere('added_by','like','%'.$term.'%')
+    ->get();
   }
 
   public function show(){
