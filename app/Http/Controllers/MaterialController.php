@@ -41,6 +41,11 @@ class MaterialController extends Controller
     }
   }
 
+  public function getData($term){
+
+    return Material::where('name','like','%'.$term.'%')->get();
+  }
+
   public function show(){
       return Material::all();
   }
