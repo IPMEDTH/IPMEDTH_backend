@@ -14,8 +14,8 @@ class CreateHelpersTable extends Migration
     public function up()
     {
         Schema::create('helpers', function (Blueprint $table) {
-            $table->foreignId('helper_id');
-            $table->foreign('helper_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
         });

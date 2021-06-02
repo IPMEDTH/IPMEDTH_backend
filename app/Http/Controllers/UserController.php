@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Helper;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class HelperController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class HelperController extends Controller
     public function index()
     {
         return response()->json(
-            Helper::all()
+            User::all()
         );
     }
 
@@ -31,28 +31,15 @@ class HelperController extends Controller
     }
 
     /**
-     * Display resources for specified user ID.
+     * Display the specified resource.
      *
-     * @param  BigInt $userId
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($userId)
+    public function show(User $user)
     {
         return response()->json(
-            Helper::where('user_id', $userId)->get()
-        );
-    }
-
-    /**
-     * Display resources for given location
-     *
-     * @param  \App\Models\Helper  $helper
-     * @return \Illuminate\Http\Response
-     */
-    public function location($locationId)
-    {
-        return response()->json(
-            Helper::where('location_id', $locationId)->get()
+            $user
         );
     }
 
@@ -60,10 +47,10 @@ class HelperController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Helper  $helper
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Helper $helper)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -71,10 +58,10 @@ class HelperController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Helper  $helper
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Helper $helper)
+    public function destroy(User $user)
     {
         //
     }

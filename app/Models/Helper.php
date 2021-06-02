@@ -12,6 +12,16 @@ class Helper extends Model
     public $timestamps = false;
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'location_id';
+    }
+
+    /**
      * The name of the database table.
      *
      * @var string
@@ -25,7 +35,7 @@ class Helper extends Model
      */
     protected $fillable = [
         'location_id',
-        'helper_id'
+        'user_id'
     ];
 
     /**
