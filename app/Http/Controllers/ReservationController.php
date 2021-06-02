@@ -27,7 +27,20 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $reservation = Reservation::create([
+                'user_id' => $request->user_id,
+                'location_id' => $request->location_id,
+                'date' => $request->date,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
+        return response()->json(
+            $reservation
+        );
     }
 
     /**

@@ -26,10 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('users', UserController::class);
 
 Route::apiResource('materials', MaterialController::class);
-
-// Route::get('getmaterials/{term}', 'MaterialController@getData');
-
-Route::get('getmaterials/{term}', [MaterialController::class, 'getData']);
+Route::get('getmaterials/{term}', [MaterialController::class, 'search']);
 
 Route::apiResource('locations', LocationController::class);
 
