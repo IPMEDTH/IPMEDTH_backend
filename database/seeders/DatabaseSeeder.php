@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Test User',
                 'email' => 'test@test.com',
                 'password' => Hash::make('testtest'),
+                'image_url' => 'https://picsum.photos/200/200',
                 'remember_token' => null,
                 'email_verified_at' => null,
             ]
@@ -29,9 +30,9 @@ class DatabaseSeeder extends Seeder
             'name' => '3D Printer',
             'description' => 'Dit is een mooie 3D Printer',
             'amount' => 2,
-            'image_url' => 'https://picsum.photos/200/300'
+            'image_url' => 'https://picsum.photos/200/200'
         ]);
-      
+
         Location::insert([
             'name' => 'Lasersnijder',
             'description' => 'Dit is een mooie lasersnijder',

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\HelperController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
