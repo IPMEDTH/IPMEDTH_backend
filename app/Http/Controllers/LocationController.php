@@ -36,7 +36,7 @@ class LocationController extends Controller
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function show($location)
+    public function show(Location $location)
     {
         return response()->json(
             $location
