@@ -22,9 +22,10 @@ class Location extends Model
      * @var array
      */
     protected $fillable = [
-        'date',
-        'start_time',
-        'end_time',
+        'name',
+        'description',
+        'amount',
+        'image_url',
     ];
 
     /**
@@ -33,8 +34,6 @@ class Location extends Model
      * @var array
      */
     protected $casts = [
-        'date' => 'date',
-        'start_time' => 'time',
-        'end_time' => 'time'
+        'amount' => 'integer',
     ];
 }
