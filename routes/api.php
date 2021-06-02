@@ -28,4 +28,6 @@ Route::get('getmaterials/{term}', [MaterialController::class, 'getData']);
 
 Route::apiResource('locations', LocationController::class);
 
-Route::apiResource('locations/{locationId}', 'LocationController@show');
+Route::apiResource('reservations', ReservationController::class);
+
+Route::apiResource('helpers', HelperController::class);
