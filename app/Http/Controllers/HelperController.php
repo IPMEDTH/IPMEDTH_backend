@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Location;
+use App\Models\Helper;
 use Illuminate\Http\Request;
 
-class LocationController extends Controller
+class HelperController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class LocationController extends Controller
     public function index()
     {
         return response()->json(
-            Location::all()
+            Helper::all()
         );
     }
 
@@ -33,13 +33,13 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Helper  $helper
      * @return \Illuminate\Http\Response
      */
-    public function show($location)
+    public function show(Helper $helper)
     {
         return response()->json(
-            $location
+            $helper
         );
     }
 
@@ -47,10 +47,10 @@ class LocationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Helper  $helper
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Location $location)
+    public function update(Request $request, Helper $helper)
     {
         //
     }
@@ -58,10 +58,10 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Location  $location
+     * @param  \App\Models\Helper  $helper
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Helper $helper)
     {
         //
     }

@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Location extends Model
+class Helper extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
 
     /**
      * The name of the database table.
      *
      * @var string
      */
-    protected $table = 'locations';
+    protected $table = 'helpers';
 
     /**
      * The attributes that are mass assignable.
@@ -22,10 +24,8 @@ class Location extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'amount',
-        'image_url',
+        'location_id',
+        'helper_id'
     ];
 
     /**
@@ -33,7 +33,7 @@ class Location extends Model
      *
      * @var array
      */
-    protected $casts = [
-        'amount' => 'integer',
-    ];
+    // protected $casts = [
+    //     'date_added' => 'date'
+    // ];
 }

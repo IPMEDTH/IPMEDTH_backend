@@ -5,16 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Location extends Model
+class Reservation extends Model
 {
     use HasFactory;
+
+    public $timestamps = true;
 
     /**
      * The name of the database table.
      *
      * @var string
      */
-    protected $table = 'locations';
+    protected $table = 'reservations';
 
     /**
      * The attributes that are mass assignable.
@@ -22,10 +24,9 @@ class Location extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'amount',
-        'image_url',
+        'date',
+        'start_time',
+        'end_time',
     ];
 
     /**
@@ -34,6 +35,8 @@ class Location extends Model
      * @var array
      */
     protected $casts = [
-        'amount' => 'integer',
+        'date' => 'date',
+        'start_time' => 'time',
+        'end_time' => 'time'
     ];
 }
