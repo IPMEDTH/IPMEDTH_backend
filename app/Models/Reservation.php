@@ -24,6 +24,8 @@ class Reservation extends Model
      * @var array
      */
     protected $fillable = [
+        'user_id',
+        'location_id',
         'date',
         'start_time',
         'end_time',
@@ -35,8 +37,6 @@ class Reservation extends Model
      * @var array
      */
     protected $casts = [
-        'date' => 'date',
-        'start_time' => 'time',
-        'end_time' => 'time'
+        'date' => 'date:Y-m-d'
     ];
 }
