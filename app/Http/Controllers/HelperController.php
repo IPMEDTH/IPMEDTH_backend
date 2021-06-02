@@ -31,15 +31,28 @@ class HelperController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display resources for specified user ID.
+     *
+     * @param  BigInt $userId
+     * @return \Illuminate\Http\Response
+     */
+    public function show($userId)
+    {
+        return response()->json(
+            Helper::where('user_id', $userId)->get()
+        );
+    }
+
+    /**
+     * Display resources for given location
      *
      * @param  \App\Models\Helper  $helper
      * @return \Illuminate\Http\Response
      */
-    public function show(Helper $helper)
+    public function location($locationId)
     {
         return response()->json(
-            $helper
+            Helper::where('location_id', $locationId)->get()
         );
     }
 
