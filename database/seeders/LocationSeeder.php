@@ -39,7 +39,7 @@ class LocationSeeder extends Seeder
             'name' => 'Werkplek',
             'description' => 'Een werkplek om aan te werken, zonder apparaten',
             'amount' => 30,
-            'image_url' => 'https://api.ipmedth.meulen.dev/werkplek.jpeg'
+            'image_url' => 'https://api.ipmedth.meulen.dev/werkplek.jpg'
         ]);
     }
 }
