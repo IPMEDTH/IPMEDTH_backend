@@ -36,6 +36,7 @@ class MaterialController extends Controller
         $item->amount = $request->amount;
         $item->unit = $request->unit;
         $item->added_by = $dummyUser;
+        $item->location = $request->location;
         $item->img_url = $dummyImgUrl;
 
         try {

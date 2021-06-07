@@ -27,6 +27,7 @@ class MaterialFactory extends Factory
             'amount' => $this->faker->randomDigit(),
             'unit' => 'Millimeter',
             'added_by' => $this->faker->name(),
+            'location' => $this->faker->words(1, true),
             'img_url' => 'https://picsum.photos/id/1058/4608/3072',
         ];
     }

@@ -21,6 +21,7 @@ class CreateMaterialTable extends Migration
             $table->integer('amount');
             $table->string('unit');
             $table->String('added_by');
+            $table->String('location');
             $table->string('img_url');
         });
     }
