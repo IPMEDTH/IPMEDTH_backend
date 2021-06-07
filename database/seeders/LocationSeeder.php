@@ -25,7 +25,7 @@ class LocationSeeder extends Seeder
             'name' => 'Lasersnijder',
             'description' => 'Een lasersnijder in een aparte ruimte',
             'amount' => 1,
-            'image_url' => 'https://api.ipmedth.meulen.dev/lasersnijder.jepg'
+            'image_url' => 'https://api.ipmedth.meulen.dev/lasersnijder.jpeg'
         ]);
 
         Location::insert([
