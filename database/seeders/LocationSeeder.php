@@ -18,14 +18,14 @@ class LocationSeeder extends Seeder
             'name' => '3D Printer',
             'description' => '2 Ultimaker 3D printers',
             'amount' => 2,
-            'image_url' => 'https://api.ipmedth.meulen.dev/1.jpeg'
+            'image_url' => 'https://api.ipmedth.meulen.dev/1.jpg'
         ]);
 
         Location::insert([
             'name' => 'Lasersnijder',
             'description' => 'Een lasersnijder in een aparte ruimte',
             'amount' => 1,
-            'image_url' => 'https://api.ipmedth.meulen.dev/lasersnijder.jpg'
+            'image_url' => 'https://api.ipmedth.meulen.dev/lasersnijder.jepg'
         ]);
 
         Location::insert([
