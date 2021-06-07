@@ -20,7 +20,7 @@ class HelperSeeder extends Seeder
         ]);
 
         Helper::insert([
-            'location_id' => 1,
+            'location_id' => 2,
             'user_id' => 2,
         ]);
     }
