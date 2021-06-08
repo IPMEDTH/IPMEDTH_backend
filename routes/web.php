@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +16,3 @@ use App\Http\Controllers\MaterialController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::post('postmaterial', [MaterialController::class, 'store']);
