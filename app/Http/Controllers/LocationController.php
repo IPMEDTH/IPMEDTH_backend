@@ -39,7 +39,7 @@ class LocationController extends Controller
     public function show(Location $location)
     {
         return response()->json(
-            $location
+            Location::with("helpers")->findOrFail($location->id)
         );
     }
 
