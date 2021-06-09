@@ -27,7 +27,7 @@ Route::apiResource('users', UserController::class);
 
 Route::apiResource('materials', MaterialController::class);
 Route::get('getmaterials/{term}', [MaterialController::class, 'search']);
-Route::post('postmaterial', [MaterialController::class, 'store'])->middleware('auth:sanctum');
+Route::post('postmaterial', [MaterialController::class, 'store']);
 
 Route::apiResource('locations', LocationController::class);
 
