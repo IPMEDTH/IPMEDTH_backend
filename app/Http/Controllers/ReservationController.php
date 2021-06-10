@@ -27,13 +27,15 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        $dummyUser = "1";
         try {
             $reservation = Reservation::create([
-                'user_id' => $request->user_id,
-                'location_id' => $request->location_id,
+                'user_id' => $dummyUser,
+                'location_id' => $request->location,
                 'date' => $request->date,
-                'start_time' => $request->start_time,
-                'end_time' => $request->end_time,
+                'start_time' => $request->start,
+                'end_time' => $request->end,
+                'help' => $request->help,
             ]);
         } catch (\Exception $e) {
             return response()->json($e);
