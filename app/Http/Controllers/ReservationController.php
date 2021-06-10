@@ -35,7 +35,6 @@ class ReservationController extends Controller
                 'date' => $request->date,
                 'start_time' => $request->start,
                 'end_time' => $request->end,
-                'help' => $request->help,
             ]);
         } catch (\Exception $e) {
             return response()->json($e);
