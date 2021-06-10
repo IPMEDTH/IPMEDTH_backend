@@ -32,6 +32,7 @@ Route::post('postmaterial', [MaterialController::class, 'store']);
 Route::apiResource('locations', LocationController::class);
 
 Route::apiResource('reservations', ReservationController::class);
+Route::post('postreservation', [ReservationController::class, 'store']);
 
 Route::apiResource('helpers', HelperController::class);
 Route::get('helpers/location/{location}', [HelperController::class, 'location']);
