@@ -23,5 +23,15 @@ class HelperSeeder extends Seeder
             'location_id' => 2,
             'user_id' => 2,
         ]);
+
+        Helper::insert([
+            'location_id' => 1,
+            'user_id' => 2,
+        ]);
+
+        Helper::insert([
+            'location_id' => 2,
+            'user_id' => 1,
+        ]);
     }
 }

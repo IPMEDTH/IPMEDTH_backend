@@ -39,7 +39,9 @@ class LocationController extends Controller
     public function show(Location $location)
     {
         return response()->json(
-            $location
+            Location::with(['helpers' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->findOrFail($location->id)
         );
     }
 

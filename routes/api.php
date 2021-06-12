@@ -27,15 +27,12 @@ Route::apiResource('users', UserController::class);
 
 Route::apiResource('materials', MaterialController::class);
 Route::get('getmaterials/{term}', [MaterialController::class, 'search']);
-// Route::post('postmaterial', [MaterialController::class, 'store'])->middleware('auth:sanctum');
-
-Route::group(['middleware' => 'auth:sanctum'], function() {
-  Route::post('postmaterial', [MaterialController::class, 'store']);
-});
+Route::post('postmaterial', [MaterialController::class, 'store']);
 
 Route::apiResource('locations', LocationController::class);
 
 Route::apiResource('reservations', ReservationController::class);
+Route::post('postreservation', [ReservationController::class, 'store']);
 
 Route::apiResource('helpers', HelperController::class);
 Route::get('helpers/location/{location}', [HelperController::class, 'location']);

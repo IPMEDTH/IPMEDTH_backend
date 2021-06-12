@@ -36,4 +36,12 @@ class Location extends Model
     protected $casts = [
         'amount' => 'integer',
     ];
+
+    /**
+     * Get all helpers for location
+     */
+    public function helpers()
+    {
+        return $this->belongsToMany(User::class, 'helpers');
+    }
 }

@@ -31,6 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'pivot'
     ];
 
     /**
@@ -41,4 +44,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all helper locations for user
+     */
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'helpers');
+    }
 }
