@@ -18,10 +18,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # load environment secrets
+    environment: testing
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      # Copies all github secrets to .env.testing file for the server to use
+      - name: Template env
+        uses: vafinvr/template-env-action@v2.0.1
+        with:
+          filename: ./.env.testing
+
 
       # Runs ssh deploy action to load the repo onto the server
       - name: ssh-scp-deploy
