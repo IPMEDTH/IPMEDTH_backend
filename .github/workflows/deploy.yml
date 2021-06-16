@@ -29,6 +29,16 @@ jobs:
       # Copies all github secrets to .env.testing file for the server to use
       - name: Template env
         uses: vafinvr/template-env-action@v2.0.1
+        env:
+          DB_DATABASE: '${{ secrets.DB_DATABASE }}'
+          DB_USERNAME: '${{ secrets.DB_USERNAME }}'
+          DB_PASSWORD: '${{ secrets.DB_PASSWORD }}'
+          MAIL_HOST: '${{ secrets.MAIL_HOST }}'
+          MAIL_PORT: '${{ secrets.MAIL_PORT }}'
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}'
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}'
+          MAIL_ENCRYPTION: ${{ secrets.MAIL_ENCRYPTION }}'
+          MAIL_FROM_ADDRESS: ${{ secrets.MAIL_FROM_ADDRESS }}'
         with:
           filename: ./.env.testing
 
