@@ -86,7 +86,7 @@ class ReservationController extends Controller
      * @param  String $searchTerm
      * @return \Illuminate\Http\Response
      */
-    public function getUserReservations($searchTerm)
+    public function search($searchTerm)
     {
         return response()->json(
             Reservation::where('user_id','=',$searchTerm)->get()
