@@ -31,7 +31,6 @@ Route::get('materials/search/{term}', [MaterialController::class, 'search']);
 Route::apiResource('locations', LocationController::class);
 
 Route::apiResource('reservations', ReservationController::class);
-Route::apiResource('reservations/user/{term}', [ReservationController::class, 'getUserReservations']);
 
 Route::apiResource('helpers', HelperController::class);
 Route::get('helpers/location/{location}', [HelperController::class, 'location']);
