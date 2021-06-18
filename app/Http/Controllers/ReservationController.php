@@ -89,7 +89,7 @@ class ReservationController extends Controller
     public function getUserReservations($searchTerm)
     {
         return response()->json(
-            Reservation::where('user_id','=',$searchTerm)->get();
+            Reservation::where('user_id','=',$searchTerm)->get()
         );
     }
 }
