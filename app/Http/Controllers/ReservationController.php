@@ -79,4 +79,17 @@ class ReservationController extends Controller
     {
         //
     }
+
+    /**
+     * Display results from search term
+     *
+     * @param  String $searchTerm
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserReservations($searchTerm)
+    {
+        return response()->json(
+            Reservation::where('user_id','=',$searchTerm)->get();
+        );
+    }
 }
