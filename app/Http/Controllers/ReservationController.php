@@ -27,10 +27,9 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $dummyUser = "1";
         try {
             $reservation = Reservation::create([
-                'user_id' => $dummyUser,
+                'user_id' => $request->user_id,
                 'location_id' => $request->location,
                 'date' => $request->date,
                 'start_time' => $request->start,
