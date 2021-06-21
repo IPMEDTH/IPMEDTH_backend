@@ -15,7 +15,9 @@ class ReservationController extends Controller
     public function index()
     {
         return response()->json(
-            Reservation::all()
+            Reservation::with(['location' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->get()
         );
     }
 
@@ -52,7 +54,9 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         return response()->json(
-            $reservation
+            Reservation::with(['location' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->findOrFail($reservation->id)
         );
     }
 
