@@ -39,4 +39,12 @@ class Reservation extends Model
     protected $casts = [
         'date' => 'date:Y-m-d'
     ];
+
+    /**
+     * Get bound location
+     */
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

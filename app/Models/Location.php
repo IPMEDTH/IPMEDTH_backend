@@ -44,4 +44,12 @@ class Location extends Model
     {
         return $this->belongsToMany(User::class, 'helpers');
     }
+
+    /**
+     * Get all reservations for location
+     */
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'reservations');
+    }
 }
