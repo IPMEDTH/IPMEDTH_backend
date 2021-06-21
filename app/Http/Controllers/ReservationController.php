@@ -92,7 +92,9 @@ class ReservationController extends Controller
     public function search($searchTerm)
     {
         return response()->json(
-            Reservation::where('user_id','=',$searchTerm)->get()
+            Reservation::with(['location' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->where('user_id','=',$searchTerm)->get()
         );
     }
 }
