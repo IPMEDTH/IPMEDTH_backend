@@ -62,7 +62,7 @@ jobs:
           # Command to run via ssh before scp upload
           pre_upload: cd ~/domains/api.ipmedth.meulen.dev && rm -rf * && rm -rf .*
           # Command to run via ssh after scp upload
-          post_upload: cd ~/domains/api.ipmedth.meulen.dev && cp public public_html -r && cp .env.testing .env && composer install && php artisan key:generate && php artisan migrate:fresh --seed && php artisan storage:link
+          post_upload: cd ~/domains/api.ipmedth.meulen.dev && cp .env.testing .env && composer install && php artisan key:generate && php artisan migrate:fresh --seed && php artisan storage:link && cp public public_html -r
           # A set of ssh_option separated by -o
           # ssh_options: # optional, default is -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
           # Flags to use during scp
