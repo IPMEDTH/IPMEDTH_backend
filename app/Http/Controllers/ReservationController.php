@@ -80,7 +80,9 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        return response()->json(
+            Reservation::findOrFail($reservation->id)->delete()
+        );
     }
 
     /**
