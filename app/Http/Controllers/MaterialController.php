@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MaterialController extends Controller
 {
@@ -27,6 +28,15 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->get('image')){
+            $image = $request->get('image');
+            $imageName = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            $url = Storage::putFileAs(
+                'public', $image, $imageName
+            );
+        }
+
         $dummyImgUrl = "/no/limits";
         $dummyUser = "Jordain Mains";
 
@@ -37,7 +47,7 @@ class MaterialController extends Controller
         $item->unit = $request->unit;
         $item->added_by = $dummyUser;
         $item->location = $request->location;
-        $item->img_url = $dummyImgUrl;
+        $item->img_url = $imageName;
 
         try {
             $item->save();

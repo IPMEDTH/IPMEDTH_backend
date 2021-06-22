@@ -28,7 +28,7 @@ class MaterialFactory extends Factory
             'unit' => 'Millimeter',
             'added_by' => $this->faker->name(),
             'location' => $this->faker->words(1, true),
-            'img_url' => 'https://picsum.photos/id/1058/4608/3072',
+            'img_url' => '1624367984.jpeg',
         ];
     }
 }
