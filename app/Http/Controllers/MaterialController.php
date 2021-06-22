@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image as Image;
 
 class MaterialController extends Controller
 {
@@ -27,6 +28,23 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+      // $request->validate([
+      //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      // ]);
+      // $imageName = time().'.'.$request->image->extension();
+      // $request->image->move(public_path('images'), $imageName);
+      // $request->image->storeAs('images', $imageName);
+
+      // return back()
+      //     ->with('success','You have successfully upload image.')
+      //     ->with('image',$imageName);
+
+        if($request->get('image')){
+            $image = $request->get('image');
+            $imageName = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            \Image::make($request->get('image'))->save(public_path('images/').$imageName);
+        }
+
         $dummyImgUrl = "/no/limits";
         $dummyUser = "Jordain Mains";
 
@@ -37,10 +55,14 @@ class MaterialController extends Controller
         $item->unit = $request->unit;
         $item->added_by = $dummyUser;
         $item->location = $request->location;
-        $item->img_url = $dummyImgUrl;
+        $item->img_url = $imageName;
 
         try {
             $item->save();
+            // $request->image->storeAs('images', $imageName);
+            // return back()
+            //     ->with('success','You have successfully upload image.')
+            //     ->with('image',$imageName);
             return true;
         } catch (\Exception $e) {
             return $e;
