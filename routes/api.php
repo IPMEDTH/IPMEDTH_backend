@@ -32,6 +32,7 @@ Route::apiResource('locations', LocationController::class);
 
 Route::apiResource('reservations', ReservationController::class);
 Route::get('reservations/user/{term}', [ReservationController::class, 'search']);
+Route::get('reservations/{locationTerm}/{dateTerm}', [ReservationController::class, 'getReservationOnDate']);
 
 Route::apiResource('helpers', HelperController::class);
 Route::get('helpers/location/{location}', [HelperController::class, 'location']);

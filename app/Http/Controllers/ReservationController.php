@@ -99,4 +99,21 @@ class ReservationController extends Controller
             }])->where('user_id','=',$searchTerm)->get()
         );
     }
+
+    /**
+     * Display results from search term
+     *
+     * @param  String $searchTerm
+     * @return \Illuminate\Http\Response
+     */
+    public function getReservationOnDate($locationTerm, $dateTerm)
+    {
+        return response()->json(
+            Reservation::with(['location' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->where('location_id','=',$locationTerm)
+            ->where('date','=',$dateTerm)
+            ->get()
+        );
+    }
 }
