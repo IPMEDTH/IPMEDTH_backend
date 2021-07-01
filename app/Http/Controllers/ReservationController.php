@@ -16,7 +16,7 @@ class ReservationController extends Controller
     {
         return response()->json(
             Reservation::with(['location' => function($query) {
-                $query->select(['id', 'name', 'image_url']);
+                $query->select(['id', 'name', 'image_url', 'knowledge', 'available']);
             }])->get()
         );
     }
@@ -55,7 +55,7 @@ class ReservationController extends Controller
     {
         return response()->json(
             Reservation::with(['location' => function($query) {
-                $query->select(['id', 'name', 'image_url']);
+                $query->select(['id', 'name', 'image_url', 'knowledge', 'available']);
             }])->findOrFail($reservation->id)
         );
     }
@@ -95,7 +95,7 @@ class ReservationController extends Controller
     {
         return response()->json(
             Reservation::with(['location' => function($query) {
-                $query->select(['id', 'name', 'image_url']);
+                $query->select(['id', 'name', 'image_url', 'knowledge', 'available']);
             }])->where('user_id','=',$searchTerm)->get()
         );
     }
@@ -110,7 +110,7 @@ class ReservationController extends Controller
     {
         return response()->json(
             Reservation::with(['location' => function($query) {
-                $query->select(['id', 'name', 'image_url']);
+                $query->select(['id', 'name', 'image_url', 'knowledge', 'available']);
             }])->where('location_id','=',$locationTerm)
             ->where('date','=',$dateTerm)
             ->get()

@@ -15,7 +15,9 @@ class HelperController extends Controller
     public function index()
     {
         return response()->json(
-            Helper::all()
+            Helper::with(['user' => function($query) {
+                $query->select(['id', 'name', 'image_url', 'knowledge', 'available']);
+            }])->all()
         );
     }
 
