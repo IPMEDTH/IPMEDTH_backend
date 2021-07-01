@@ -39,7 +39,9 @@ class UserController extends Controller
     public function show(User $user)
     {
         return response()->json(
-            $user
+            User::with(['locations' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->findOrFail($user->id)
         );
     }
 
@@ -64,5 +66,20 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexHelpers()
+    {
+        return response()->json(
+            User::with(['locations' => function($query) {
+                $query->select(['id', 'name', 'image_url']);
+            }])->has('locations')->get()
+            // User::all()
+        );
     }
 }

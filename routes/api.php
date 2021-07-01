@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('users', UserController::class);
+Route::get('helpers', [UserController::class, 'indexHelpers']);
 
 Route::apiResource('materials', MaterialController::class);
 Route::get('materials/search/{term}', [MaterialController::class, 'search']);
@@ -33,6 +34,3 @@ Route::apiResource('locations', LocationController::class);
 Route::apiResource('reservations', ReservationController::class);
 Route::get('reservations/user/{term}', [ReservationController::class, 'search']);
 Route::get('reservations/{locationTerm}/{dateTerm}', [ReservationController::class, 'getReservationOnDate']);
-
-Route::apiResource('helpers', HelperController::class);
-Route::get('helpers/location/{location}', [HelperController::class, 'location']);
