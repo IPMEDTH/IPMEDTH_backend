@@ -28,6 +28,7 @@ Route::get('helpers', [UserController::class, 'indexHelpers']);
 
 Route::apiResource('materials', MaterialController::class);
 Route::get('materials/search/{term}', [MaterialController::class, 'search']);
+Route::put('materials', [MaterialController::class, 'update']);
 
 Route::apiResource('locations', LocationController::class);
 

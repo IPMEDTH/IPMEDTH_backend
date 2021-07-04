@@ -28,6 +28,7 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
+        $imageName = '';
 
         if($request->get('image')){
             $image = $request->get('image');
@@ -92,7 +93,39 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        //
+        $imageName = '';
+
+        if ($request->get('image')) {
+            $image = $request->get('image');
+            $imageName = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            $url = Storage::putFileAs(
+                'public', $image, $imageName
+            );
+            $material->img_url = $imageName;
+
+            // TODO: delete old image file
+        }
+
+        $material = Material::find($request->id);
+        $material->name = $request->name;
+        $material->description = $request->description;
+        $material->amount = $request->amount;
+        $material->unit = $request->unit;
+        // $material->added_by = $dummyUser;
+        $material->location = $request->location;
+        if ($imageName!='') {
+          $material->img_url = $imageName;
+        }
+
+        try {
+
+            $material->save();
+            return response()->json();
+
+        } catch (\Exception $e) {
+          return $e;
+        }
+
     }
 
     /**
