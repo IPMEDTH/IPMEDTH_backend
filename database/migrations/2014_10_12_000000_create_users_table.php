@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('available')->nullable();
             $table->boolean('isadmin')->default(false);
             $table->string('password');
-            $table->boolean('is_admin');
             $table->string('image_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
