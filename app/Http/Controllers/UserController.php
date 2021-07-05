@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
@@ -81,5 +83,44 @@ class UserController extends Controller
             }])->has('locations')->get()
             // User::all()
         );
+    }
+
+    /**
+     * Update the current user in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCurrentUser(Request $request)
+    {
+        $user = $request->user();
+
+        $imageName = '';
+
+        if ($request->get('image_url')) {
+            $image = $request->get('image_url');
+            $imageName = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            Storage::putFileAs(
+                'public', $image, $imageName
+            );
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->knowledge = $request->knowledge;
+        $user->available = $request->available;
+        if ($imageName!='') {
+          $user->image_url = URL::to('/storage/public') . '/' . $imageName;
+        }
+
+        try {
+
+            $user->save();
+            return response()->json();
+
+        } catch (\Exception $e) {
+          return $e;
+        }
+
     }
 }
