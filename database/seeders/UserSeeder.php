@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'name' => 'Test User',
                 'email' => 'test@test.com',
                 'password' => Hash::make('testtest'),
+                'is_admin' => true,
                 'image_url' => 'https://picsum.photos/200/200',
                 'knowledge' => 'Lasersnijder & 3D Printer',
                 'available' => 'Elke week',
