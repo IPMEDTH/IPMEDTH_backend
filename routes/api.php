@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\HelperController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ReservationController;
@@ -19,8 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('user', function (Request $request) {
     return $request->user();
+});
+Route::middleware('auth:sanctum')->put('user', [UserController::class, 'updateCurrentUser']);
+
+Route::middleware('auth:sanctum')->post('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
 });
 
 Route::apiResource('users', UserController::class);
