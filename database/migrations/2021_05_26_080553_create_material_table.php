@@ -17,7 +17,7 @@ class CreateMaterialTable extends Migration
             $table->id();
             $table->timestamps();
             $table->String('name');
-            $table->String('description');
+            $table->longText('description');
             $table->integer('amount');
             $table->string('unit');
             $table->String('added_by');
