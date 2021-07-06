@@ -136,6 +136,12 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        //
+      try {
+        Material::find($material->id)->delete();
+        return response()->json();
+      } catch (\Exception $e) {
+        return $e;
+      }
+
     }
 }
