@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\Materialhistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,7 +40,7 @@ class MaterialController extends Controller
         }
 
         $dummyImgUrl = "/no/limits";
-        $dummyUser = "Jordain Mains";
+        $dummyUser = "Jordan Mains";
 
         $item = new Material();
         $item->name = $request->name;
@@ -106,6 +107,8 @@ class MaterialController extends Controller
             // TODO: delete old image file
         }
 
+        $dummyUser = "Jordan Mains";
+
         $material = Material::find($request->id);
         $material->name = $request->name;
         $material->description = $request->description;
@@ -117,8 +120,14 @@ class MaterialController extends Controller
           $material->img_url = $imageName;
         }
 
-        try {
+        $materialhistory = new Materialhistory();
+        $materialhistory->name = $request->name;
+        $materialhistory->amount = $request->amount;
+        $materialhistory->unit = $request->unit;
+        $materialhistory->updated_by = $dummyUser;
 
+        try {
+            $materialhistory->save();
             $material->save();
             return response()->json();
 
