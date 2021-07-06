@@ -47,4 +47,12 @@ class Reservation extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    /**
+     * Get bound user
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
