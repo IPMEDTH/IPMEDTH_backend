@@ -20,6 +20,8 @@ class CreateMaterialhistoryTable extends Migration
             $table->integer('amount');
             $table->string('unit');
             $table->string('updated_by');
+            $table->string('img_url');
+            $table->string('modification');
         });
     }
 

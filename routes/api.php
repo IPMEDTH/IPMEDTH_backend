@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\MaterialhistoryController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -35,6 +36,7 @@ Route::get('helpers', [UserController::class, 'indexHelpers']);
 Route::apiResource('materials', MaterialController::class);
 Route::get('materials/search/{term}', [MaterialController::class, 'search']);
 Route::put('materials', [MaterialController::class, 'update']);
+Route::apiResource('history', MaterialhistoryController::class);
 
 Route::apiResource('locations', LocationController::class);
 

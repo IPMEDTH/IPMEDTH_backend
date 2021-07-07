@@ -110,11 +110,15 @@ class MaterialController extends Controller
         $dummyUser = "Jordan Mains";
 
         $material = Material::find($request->id);
+
+        $original_amount = Material::find($request->id)->get('amount');
+        $new_amount = $request->amount;
+
         $material->name = $request->name;
         $material->description = $request->description;
         $material->amount = $request->amount;
         $material->unit = $request->unit;
-        // $material->added_by = $dummyUser;
+        $material->added_by = $request->added_by;
         $material->location = $request->location;
         if ($imageName!='') {
           $material->img_url = $imageName;
@@ -124,7 +128,22 @@ class MaterialController extends Controller
         $materialhistory->name = $request->name;
         $materialhistory->amount = $request->amount;
         $materialhistory->unit = $request->unit;
-        $materialhistory->updated_by = $dummyUser;
+        $materialhistory->updated_by = $request->added_by;
+        $materialhistory->modification = 'unchanged';
+
+        if ($imageName!='') {
+          $materialhistory->img_url = $imageName;
+        } else {
+          $materialhistory->img_url = $material->img_url;
+        }
+
+        // if ($original_amount>$new_amount) {
+        //   $materialhistory->modification = 'decrease';
+        // } else if ($new_amount<$original_amount) {
+        //   $materialhistory->modification = 'increase';
+        // } else {
+        //   $materialhistory->modification = 'unchanged';
+        // }
 
         try {
             $materialhistory->save();
@@ -134,6 +153,14 @@ class MaterialController extends Controller
         } catch (\Exception $e) {
           return $e;
         }
+
+        // try {
+        //   $materialhistory->save();
+        //   return response()->json();
+        // } catch (\Exception $e) {
+        //   return $e;
+        // }
+
 
     }
 
