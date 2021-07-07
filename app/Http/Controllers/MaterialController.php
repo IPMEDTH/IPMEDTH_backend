@@ -129,7 +129,7 @@ class MaterialController extends Controller
         $materialhistory->amount = $request->amount;
         $materialhistory->unit = $request->unit;
         $materialhistory->updated_by = $request->added_by;
-        $materialhistory->modification = 'unchanged';
+        // $materialhistory->modification = 'unchanged';
 
         if ($imageName!='') {
           $materialhistory->img_url = $imageName;
@@ -137,13 +137,13 @@ class MaterialController extends Controller
           $materialhistory->img_url = $material->img_url;
         }
 
-        // if ($original_amount>$new_amount) {
-        //   $materialhistory->modification = 'decrease';
-        // } else if ($new_amount<$original_amount) {
-        //   $materialhistory->modification = 'increase';
-        // } else {
-        //   $materialhistory->modification = 'unchanged';
-        // }
+        if ($original_amount>$new_amount) {
+          $materialhistory->modification = 'decrease';
+        } else if ($new_amount<$original_amount) {
+          $materialhistory->modification = 'increase';
+        } else {
+          $materialhistory->modification = 'unchanged';
+        }
 
         try {
             $materialhistory->save();

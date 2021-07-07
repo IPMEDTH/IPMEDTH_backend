@@ -37,6 +37,7 @@ Route::apiResource('materials', MaterialController::class);
 Route::get('materials/search/{term}', [MaterialController::class, 'search']);
 Route::put('materials', [MaterialController::class, 'update']);
 Route::apiResource('history', MaterialhistoryController::class);
+Route::get('history/search/{term}', [MaterialhistoryController::class, 'search']);
 
 Route::apiResource('locations', LocationController::class);
 

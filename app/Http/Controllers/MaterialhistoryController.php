@@ -19,4 +19,17 @@ class MaterialhistoryController extends Controller
               Materialhistory::all()
           );
       }
+
+      /**
+       * Display results from search terms
+       *
+       * @param  String $searchTerms
+       * @return \Illuminate\Http\Response
+       */
+      public function search($searchTerms){
+          return Materialhistory::where('name','like','%'.$searchTerms.'%')
+              ->orWhere('modification','like','%'.$searchTerms.'%')
+              ->orWhere('updated_by','like','%'.$searchTerms.'%')
+              ->get();
+      }
 }
