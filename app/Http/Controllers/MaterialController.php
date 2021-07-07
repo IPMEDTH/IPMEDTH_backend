@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Material;
+use App\Models\Materialhistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,7 +40,7 @@ class MaterialController extends Controller
         }
 
         $dummyImgUrl = "/no/limits";
-        $dummyUser = "Jordain Mains";
+        $dummyUser = "Jordan Mains";
 
         $item = new Material();
         $item->name = $request->name;
@@ -106,25 +107,60 @@ class MaterialController extends Controller
             // TODO: delete old image file
         }
 
+        $dummyUser = "Jordan Mains";
+
         $material = Material::find($request->id);
+
+        $original_amount = Material::find($request->id)->get('amount');
+        $new_amount = $request->amount;
+
         $material->name = $request->name;
         $material->description = $request->description;
         $material->amount = $request->amount;
         $material->unit = $request->unit;
-        // $material->added_by = $dummyUser;
+        $material->added_by = $request->added_by;
         $material->location = $request->location;
         if ($imageName!='') {
           $material->img_url = $imageName;
         }
 
-        try {
+        $materialhistory = new Materialhistory();
+        $materialhistory->name = $request->name;
+        $materialhistory->amount = $request->amount;
+        $materialhistory->unit = $request->unit;
+        $materialhistory->updated_by = $request->added_by;
+        // $materialhistory->modification = 'unchanged';
 
+        if ($imageName!='') {
+          $materialhistory->img_url = $imageName;
+        } else {
+          $materialhistory->img_url = $material->img_url;
+        }
+
+        if ($original_amount>$new_amount) {
+          $materialhistory->modification = 'decrease';
+        } else if ($new_amount<$original_amount) {
+          $materialhistory->modification = 'increase';
+        } else {
+          $materialhistory->modification = 'unchanged';
+        }
+
+        try {
+            $materialhistory->save();
             $material->save();
             return response()->json();
 
         } catch (\Exception $e) {
           return $e;
         }
+
+        // try {
+        //   $materialhistory->save();
+        //   return response()->json();
+        // } catch (\Exception $e) {
+        //   return $e;
+        // }
+
 
     }
 
