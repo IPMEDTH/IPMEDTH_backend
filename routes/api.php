@@ -18,15 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('user', [UserController::class, 'showCurrentUser']);
 Route::middleware('auth:sanctum')->put('user', [UserController::class, 'updateCurrentUser']);
 
-Route::middleware('auth:sanctum')->post('/tokens/create', function (Request $request) {
+Route::middleware('auth:sanctum')->post('/tokens', function (Request $request) {
     $token = $request->user()->createToken($request->token_name);
 
     return ['token' => $token->plainTextToken];
+});
+
+Route::middleware('auth:sanctum')->delete('/tokens/{tokenId}', function (Request $request, $tokenId) {
+    return response()->json(
+        $request->user()->tokens()->where('id', $tokenId)->delete()
+    );
 });
 
 Route::apiResource('users', UserController::class);

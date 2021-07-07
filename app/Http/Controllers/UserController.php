@@ -95,6 +95,24 @@ class UserController extends Controller
     }
 
     /**
+     * Display the current User.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function showCurrentUser(Request $request)
+    {
+        return response()->json(
+            User::with([
+                'locations' => function($query) {
+                    $query->select(['id', 'name', 'image_url']);
+                },
+                'tokens'
+            ])->findOrFail($request->user()->id)
+        );
+    }
+
+    /**
      * Update the current user in storage.
      *
      * @param  \Illuminate\Http\Request  $request
