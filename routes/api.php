@@ -34,17 +34,19 @@ Route::middleware('auth:sanctum')->delete('/tokens/{tokenId}', function (Request
     );
 });
 
-Route::apiResource('users', UserController::class);
+Route::apiResource('locations', LocationController::class);
 Route::get('helpers', [UserController::class, 'indexHelpers']);
-
 Route::apiResource('materials', MaterialController::class);
 Route::get('materials/search/{term}', [MaterialController::class, 'search']);
-Route::put('materials', [MaterialController::class, 'update']);
-Route::apiResource('history', MaterialhistoryController::class);
-Route::get('history/search/{term}', [MaterialhistoryController::class, 'search']);
 
-Route::apiResource('locations', LocationController::class);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('users', UserController::class);
 
-Route::apiResource('reservations', ReservationController::class);
-Route::get('reservations/user/{term}', [ReservationController::class, 'search']);
-Route::get('reservations/{locationTerm}/{dateTerm}', [ReservationController::class, 'getReservationOnDate']);
+    Route::put('materials', [MaterialController::class, 'update']);
+    Route::apiResource('history', MaterialhistoryController::class);
+    Route::get('history/search/{term}', [MaterialhistoryController::class, 'search']);
+
+    Route::apiResource('reservations', ReservationController::class);
+    Route::get('reservations/user/{term}', [ReservationController::class, 'search']);
+    Route::get('reservations/{locationTerm}/{dateTerm}', [ReservationController::class, 'getReservationOnDate']);
+});
